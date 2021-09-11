@@ -66,15 +66,15 @@ class MainActivity : AppCompatActivity() {
         fadeInTransition.addTarget(R.id.bottom_video)
         fadeInTransition.addTarget(R.id.close)
         fadeInTransition.addTarget(R.id.bottom_video_widget)
+        fadeInTransition.addTarget(R.id.video_player)
 
         val fadeOutTransition = Fade(Fade.OUT)
         fadeOutTransition.startDelay = 500
         fadeOutTransition.duration = 1000
-        fadeOutTransition.addTarget(R.id.mire_d)
-        fadeInTransition.addTarget(R.id.top_video)
-        fadeInTransition.addTarget(R.id.bottom_video)
-        fadeInTransition.addTarget(R.id.close)
-        fadeInTransition.addTarget(R.id.bottom_video_widget)
+        fadeOutTransition.addTarget(R.id.top_video)
+        fadeOutTransition.addTarget(R.id.bottom_video)
+        fadeOutTransition.addTarget(R.id.close)
+        fadeOutTransition.addTarget(R.id.bottom_video_widget)
 
         transitionSet = TransitionSet()
         transitionSet.ordering = TransitionSet.ORDERING_TOGETHER
@@ -131,17 +131,15 @@ class MainActivity : AppCompatActivity() {
                     binary.text = getRandomString()
                 }
             }
-        }, 0, 600)
+        }, 500, 600)
     }
 
     fun launchVideo(view: View) {
         TransitionManager.go(mainSceneVideo, transitionSet)
-        getRandomBinary()
         getVideoView("android.resource://" + packageName + "/" + R.raw.intro).start()
     }
 
     fun closeVideo(view: View) {
         TransitionManager.go(mainScene, transitionSet)
-        getRandomBinary()
     }
 }
