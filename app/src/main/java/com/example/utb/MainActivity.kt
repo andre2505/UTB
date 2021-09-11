@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun getRandomString(): String
     {
-        return (1..200)
+        return (1..250)
             .map { (0..10).random() }
             .joinToString("")
     }
