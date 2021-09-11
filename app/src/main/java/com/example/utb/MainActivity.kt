@@ -1,15 +1,19 @@
 package com.example.utb
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.transition.*
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
-import android.widget.ImageView
+import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import java.security.MessageDigest
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         initAnimation()
 
         mainScene.enter()
+
+        getRandomBinary()
+
     }
 
     private fun initWindowView() {
@@ -79,7 +86,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getVideoView(path: String): VideoView {
         val videoView: VideoView = mainSceneVideo.sceneRoot.findViewById(R.id.video_player)
-
         videoView.setVideoPath(path)
         prepareVideo(videoView)
 
@@ -108,12 +114,34 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun getRandomString(): String
+    {
+        return (1..200)
+            .map { (0..10).random() }
+            .joinToString("")
+    }
+
+    private fun getRandomBinary()
+    {
+        val binary: TextView = findViewById(R.id.binary)
+        Timer().schedule(object : TimerTask() {
+            override fun run() {
+                // use runOnUiThread(Runnable action)
+                runOnUiThread {
+                    binary.text = getRandomString()
+                }
+            }
+        }, 0, 600)
+    }
+
     fun launchVideo(view: View) {
         TransitionManager.go(mainSceneVideo, transitionSet)
+        getRandomBinary()
         getVideoView("android.resource://" + packageName + "/" + R.raw.intro).start()
     }
 
     fun closeVideo(view: View) {
         TransitionManager.go(mainScene, transitionSet)
+        getRandomBinary()
     }
 }

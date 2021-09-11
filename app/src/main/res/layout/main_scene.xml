@@ -4,29 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fond_bleu_2"
+    android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/barre"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/barre_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".66"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".05" />
 
     <ImageView
         android:id="@+id/folders"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/folders"
-        app:layout_constraintEnd_toStartOf="@+id/barre"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".18"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
@@ -39,7 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/graph_1"
-        app:layout_constraintEnd_toStartOf="@+id/barre"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".12"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
@@ -53,7 +40,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/graph_2"
-        app:layout_constraintEnd_toStartOf="@+id/barre"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".12"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
@@ -67,7 +54,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/graph_3"
-        app:layout_constraintEnd_toStartOf="@+id/barre"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".12"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
@@ -76,36 +63,14 @@
         app:layout_constraintWidth_percent=".12" />
 
     <ImageView
-        android:id="@+id/graduation_1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="60dp"
-        android:src="@drawable/graduation_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent=".32" />
-
-    <ImageView
-        android:id="@+id/graduation_2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:src="@drawable/graduation_2"
-        app:layout_constraintBottom_toTopOf="@+id/graduation_1"
-        app:layout_constraintHeight_percent=".28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent=".05" />
-
-    <ImageView
         android:id="@+id/video"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/video"
         android:onClick="launchVideo"
+        android:src="@drawable/video"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
         app:layout_constraintHeight_percent=".18"
-        app:layout_constraintStart_toEndOf="@+id/binary"
+        app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toTopOf="@+id/horGuideline1"
         app:layout_constraintWidth_percent=".18"
         tools:ignore="UsingOnClickInXml" />
@@ -114,11 +79,11 @@
         android:id="@+id/worldmap"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/worldmap"
         android:layout_marginTop="80dp"
+        android:src="@drawable/worldmap"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
         app:layout_constraintHeight_percent=".14"
-        app:layout_constraintStart_toEndOf="@+id/binary"
+        app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toBottomOf="@+id/video"
         app:layout_constraintWidth_percent=".14" />
 
@@ -126,27 +91,13 @@
         android:id="@+id/notice"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/notice"
         android:layout_marginTop="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/graduation_1"
+        android:src="@drawable/notice"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
         app:layout_constraintHeight_percent=".18"
-        app:layout_constraintStart_toEndOf="@+id/binary"
+        app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toBottomOf="@+id/worldmap"
         app:layout_constraintWidth_percent=".18" />
-
-    <TextView
-        android:id="@+id/binary"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:text="9498483847845758589494898498498948984948484747378383894894845785747473737484854847741038462894904836253648950593725465590595959594746464"
-        android:textColor="@color/white"
-        app:layout_constraintHeight_percent=".30"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horGuideline1"
-        app:layout_constraintWidth_percent=".08" />
 
 
     <ImageView
@@ -249,5 +200,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.37" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_logo_g"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.11" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_logo_r"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.98" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

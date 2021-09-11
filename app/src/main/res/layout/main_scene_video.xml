@@ -4,58 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fond_bleu_2"
+    android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/barre"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/barre_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".66"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".05" />
-
-    <ImageView
-        android:id="@+id/graduation_1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="60dp"
-        android:src="@drawable/graduation_1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent=".10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent=".32" />
-
-    <ImageView
-        android:id="@+id/graduation_2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:src="@drawable/graduation_2"
-        app:layout_constraintBottom_toTopOf="@+id/graduation_1"
-        app:layout_constraintHeight_percent=".28"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent=".05" />
-
-
-    <TextView
-        android:id="@+id/binary"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:text="9498483847845758589494898498498948984948484747378383894894845785747473737484854847741038462894904836253648950593725465590595959594746464"
-        android:textColor="@color/white"
-        app:layout_constraintHeight_percent=".30"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horGuideline1"
-        app:layout_constraintWidth_percent=".08" />
 
     <ImageView
         android:id="@+id/mire_g"
