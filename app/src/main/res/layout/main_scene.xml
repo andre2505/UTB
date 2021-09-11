@@ -79,7 +79,6 @@
         android:id="@+id/graduation_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginStart="60dp"
         android:src="@drawable/graduation_1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,11 +102,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/video"
+        android:onClick="launchVideo"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
         app:layout_constraintHeight_percent=".18"
         app:layout_constraintStart_toEndOf="@+id/binary"
         app:layout_constraintTop_toTopOf="@+id/horGuideline1"
-        app:layout_constraintWidth_percent=".18" />
+        app:layout_constraintWidth_percent=".18"
+        tools:ignore="UsingOnClickInXml" />
 
     <ImageView
         android:id="@+id/worldmap"

@@ -25,7 +25,6 @@
         android:id="@+id/graduation_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginStart="60dp"
         android:src="@drawable/graduation_1"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -102,15 +101,28 @@
         android:layout_height="0dp"
         android:scaleType="centerInside"
         android:src="@drawable/truc_haut_avec_croix"
+        android:onClick="closeVideo"
         app:layout_constraintBottom_toBottomOf="@+id/bottom_video"
         app:layout_constraintEnd_toEndOf="@+id/bottom_video"
         app:layout_constraintStart_toStartOf="@+id/bottom_video"
         app:layout_constraintTop_toTopOf="@+id/horGuideline_icon" />
 
+    <View
+        android:id="@+id/video_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/mire_d"
+        app:layout_constraintStart_toEndOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video" />
     <VideoView
         android:id="@+id/video_player"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:keepScreenOn="true"
         app:layout_constraintBottom_toTopOf="@id/horGuideline4"
         app:layout_constraintEnd_toStartOf="@+id/mire_d"
         app:layout_constraintStart_toEndOf="@+id/mire_g"
@@ -122,12 +134,13 @@
         android:layout_height="0dp"
         android:background="@drawable/border_bottom_blue_video"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/video_player"
+        app:layout_constraintBottom_toBottomOf="@+id/video_background"
         app:layout_constraintEnd_toStartOf="@+id/horGuideline2"
         app:layout_constraintHeight_percent=".05"
         app:layout_constraintStart_toEndOf="@+id/horGuideline3" />
 
     <ImageView
+        android:id="@+id/bottom_video_widget"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/truc_bas_sans_croix"
