@@ -59,29 +59,10 @@ class MainActivity : AppCompatActivity() {
         cbTransition.addTarget(R.id.mire_d)
         cbTransition.addTarget(R.id.mire_g)
 
-        val fadeInTransition = Fade(Fade.IN)
-        fadeInTransition.duration = 1000
-        fadeInTransition.startDelay = 500
-        fadeInTransition.addTarget(R.id.top_video)
-        fadeInTransition.addTarget(R.id.bottom_video)
-        fadeInTransition.addTarget(R.id.close)
-        fadeInTransition.addTarget(R.id.bottom_video_widget)
-        fadeInTransition.addTarget(R.id.video_player)
-
-        val fadeOutTransition = Fade(Fade.OUT)
-        fadeOutTransition.startDelay = 500
-        fadeOutTransition.duration = 1000
-        fadeOutTransition.addTarget(R.id.top_video)
-        fadeOutTransition.addTarget(R.id.bottom_video)
-        fadeOutTransition.addTarget(R.id.close)
-        fadeOutTransition.addTarget(R.id.bottom_video_widget)
-
         transitionSet = TransitionSet()
         transitionSet.ordering = TransitionSet.ORDERING_TOGETHER
 
         transitionSet.addTransition(cbTransition)
-        transitionSet.addTransition(fadeInTransition)
-        transitionSet.addTransition(fadeOutTransition)
     }
 
     private fun getVideoView(path: String): VideoView {
