@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="@id/horGuideline4"
         app:layout_constraintEnd_toStartOf="@+id/horGuideline3"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".80"
+        app:layout_constraintHeight_percent=".86"
         app:layout_constraintTop_toTopOf="@id/horGuideline1"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent=".12" />
@@ -29,7 +29,7 @@
         android:background="@drawable/mire_d_op"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".80"
+        app:layout_constraintHeight_percent=".86"
         app:layout_constraintStart_toEndOf="@+id/horGuideline2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
@@ -105,42 +105,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.07" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.095" />
+        app:layout_constraintGuide_percent="0.06" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.79" />
+        app:layout_constraintGuide_percent="0.82" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline_icon_bas_video"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.905" />
+        app:layout_constraintGuide_percent="0.94" />
 
 
 

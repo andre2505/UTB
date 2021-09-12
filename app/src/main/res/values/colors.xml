@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_video">#9BA7B4</color>
     <color name="blue_clear">#74BEE0</color>
+    <color name="white_transpanrency_background">#FCFDFD</color>
 </resources>

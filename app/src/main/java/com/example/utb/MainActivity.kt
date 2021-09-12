@@ -1,18 +1,23 @@
 package com.example.utb
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.transition.*
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import java.security.MessageDigest
+import com.squareup.picasso.Picasso
+import com.squareup.picasso.Picasso.LoadedFrom
+import com.squareup.picasso.Target
+import java.io.File
+import java.io.FileOutputStream
 import java.util.*
 
 
@@ -20,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainScene: Scene
     private lateinit var mainSceneVideo: Scene
+    private lateinit var sceneMission: Scene
     private lateinit var transitionSet: TransitionSet
     private lateinit var sceneRootFrameLayout: FrameLayout
 
@@ -30,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         sceneRootFrameLayout = findViewById(R.id.sceneRootFrameLayout)
 
         mainScene = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.main_scene, this)
-        mainSceneVideo =
-            Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.main_scene_video, this)
+        mainSceneVideo = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_video, this)
+        sceneMission = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_mission, this)
 
         initAnimation()
 
@@ -95,15 +101,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getRandomString(): String
-    {
+    private fun getRandomString(): String {
         return (1..250)
             .map { (0..10).random() }
             .joinToString("")
     }
 
-    private fun getRandomBinary()
-    {
+    private fun getRandomBinary() {
         val binary: TextView = findViewById(R.id.binary)
         Timer().schedule(object : TimerTask() {
             override fun run() {
@@ -122,5 +126,15 @@ class MainActivity : AppCompatActivity() {
 
     fun closeVideo(view: View) {
         TransitionManager.go(mainScene, transitionSet)
+    }
+
+    fun openMissionsView(view: View) {
+        TransitionManager.go(sceneMission, transitionSet)
+        val missionDetailImage: ImageView =
+            sceneMission.sceneRoot.findViewById<ImageView>(R.id.map_mission_detail)
+
+        Picasso.get().load(R.drawable.mission_amsterdam )
+            .resize(missionDetailImage.measuredWidth / 4 , missionDetailImage.maxHeight / 4 )
+            .into(missionDetailImage)
     }
 }

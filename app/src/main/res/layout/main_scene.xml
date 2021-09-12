@@ -13,14 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/folders"
-
+        android:onClick="openMissionsView"
         app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".24"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
         app:layout_constraintTop_toTopOf="@+id/horGuideline1"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".18" />
+        app:layout_constraintWidth_percent=".18"
+        tools:ignore="UsingOnClickInXml" />
 
     <ImageView
         android:id="@+id/graph"
@@ -223,7 +224,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.98" />
+        app:layout_constraintGuide_percent="0.94" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

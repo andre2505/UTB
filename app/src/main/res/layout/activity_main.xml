@@ -49,14 +49,14 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:text="123456789"
             android:textSize="10sp"
             android:textColor="@color/blue_clear"
             app:layout_constraintHeight_percent=".24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/horGuideline1"
-            app:layout_constraintWidth_percent=".06"
+            app:layout_constraintWidth_percent=".054"
             tools:ignore="SmallSp" />
 
 
@@ -105,12 +105,10 @@
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" >
+        app:layout_constraintTop_toTopOf="parent">
 
-        <include layout="@layout/main_scene" />
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
