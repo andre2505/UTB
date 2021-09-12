@@ -13,9 +13,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/folders"
+
         app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".18"
+        app:layout_constraintHeight_percent=".24"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
         app:layout_constraintTop_toTopOf="@+id/horGuideline1"
         app:layout_constraintWidth_default="percent"
@@ -28,11 +29,11 @@
         android:src="@drawable/graph_1"
         app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent=".12"
+        app:layout_constraintHeight_percent=".14"
         app:layout_constraintStart_toEndOf="@+id/mire_d"
         app:layout_constraintTop_toBottomOf="@+id/folders"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent=".12" />
+        app:layout_constraintWidth_percent=".14" />
 
     <ImageView
         android:id="@+id/graph_2"
@@ -69,7 +70,7 @@
         android:onClick="launchVideo"
         android:src="@drawable/video"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
-        app:layout_constraintHeight_percent=".18"
+        app:layout_constraintHeight_percent=".24"
         app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toTopOf="@+id/horGuideline1"
         app:layout_constraintWidth_percent=".18"
@@ -79,22 +80,24 @@
         android:id="@+id/worldmap"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/worldmap"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
-        app:layout_constraintHeight_percent=".14"
+        app:layout_constraintHeight_percent=".20"
         app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toBottomOf="@+id/video"
-        app:layout_constraintWidth_percent=".14" />
+        app:layout_constraintWidth_percent=".18" />
 
     <ImageView
         android:id="@+id/notice"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="100dp"
         android:src="@drawable/notice"
+        android:visibility="visible"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/horGuideline4"
         app:layout_constraintEnd_toStartOf="@+id/mire_g"
-        app:layout_constraintHeight_percent=".18"
+        app:layout_constraintHeight_percent=".24"
         app:layout_constraintStart_toStartOf="@+id/guideline_logo_g"
         app:layout_constraintTop_toBottomOf="@+id/worldmap"
         app:layout_constraintWidth_percent=".18" />
@@ -185,7 +188,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
-        app:layout_constraintGuide_percent="0.12" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline2"
@@ -202,11 +205,18 @@
         app:layout_constraintGuide_percent="0.37" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_logo_g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.11" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_logo_r"
