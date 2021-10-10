@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/background_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_blue_top_and_bottom"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/background_map_bottom"
+        app:layout_constraintEnd_toEndOf="@+id/background_map_right"
+        app:layout_constraintStart_toStartOf="@+id/background_map_left"
+        app:layout_constraintTop_toTopOf="@+id/background_map_top" />
+
+
+    <ImageView
+        android:id="@+id/mire_g_no_gray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mire_g"
+        app:layout_constraintBottom_toBottomOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline3"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintTop_toTopOf="@id/horGuideline1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/mire_g"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mire_g_op"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline3"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintTop_toTopOf="@id/horGuideline1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/mire_d_no_gray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/mire_d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+
+    <ImageView
+        android:id="@+id/mire_d"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/mire_d_op"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/bottom_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_top_blue_video"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline2"
+        app:layout_constraintHeight_percent=".05"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline3"
+        app:layout_constraintTop_toTopOf="@+id/horGuideline1" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="closeVideo"
+        android:scaleType="centerInside"
+        android:src="@drawable/truc_haut_avec_croix"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_video"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_video"
+        app:layout_constraintStart_toStartOf="@+id/bottom_video"
+        app:layout_constraintTop_toTopOf="@+id/horGuideline_icon"
+        tools:ignore="UsingOnClickInXml" />
+
+    <View
+        android:id="@+id/video_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white_transpanrency_background"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/mire_d"
+        app:layout_constraintStart_toEndOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video" />
+
+    <VideoView
+        android:id="@+id/video_player"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:keepScreenOn="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/mire_d"
+        app:layout_constraintStart_toEndOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video" />
+
+    <ImageView
+        android:id="@+id/top_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_bottom_blue_video"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/video_background"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline2"
+        app:layout_constraintHeight_percent=".05"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline3" />
+
+    <ImageView
+        android:id="@+id/bottom_video_widget"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/truc_bas_sans_croix"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/horGuideline_icon_bas_video"
+        app:layout_constraintEnd_toEndOf="@+id/top_video"
+        app:layout_constraintStart_toStartOf="@+id/top_video"
+        app:layout_constraintTop_toTopOf="@+id/top_video" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/grey_video"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/top_video"
+        app:layout_constraintEnd_toEndOf="@+id/mire_d"
+        app:layout_constraintStart_toStartOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video"
+        app:layout_constraintWidth_percent=".70">
+
+        <TextView
+            android:id="@+id/title_light_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="NOTICE DE FONCTIONNEMENT DES BOUTONS LUMINEUX"
+            android:textColor="@color/pink_text"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sub_title_light_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Note de communication 147 - 921"
+            android:textColor="@color/blue_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_light_button" />
+
+        <TextView
+            android:id="@+id/description_light_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:justificationMode="inter_word"
+            android:text="Les modules de surveillance de génération ALPHA intègrent un double système de protection permettant à la fois de sécuriser l’accès au module et de protéger l’envoi de données via le cube d’archivage. Ce système est composé de trois boutons qui s’illuminent selon les besoins, vous trouverez ci-dessus les deux phases d’utilisations du dispositif."
+            android:textAlignment="textStart"
+            android:textColor="@color/blue_text"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sub_title_light_button" />
+
+        <TextView
+            android:id="@+id/agent_arc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="1. Présence des agents de l’ARC"
+            android:textColor="@color/pink_text"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_light_button" />
+
+        <TextView
+            android:id="@+id/description_arc"
+            android:layout_width="390dp"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:text="La première fonctionnalité des signaux lumineux est d’autoriser l’accès aux systèmes du Module de Surveillance en signifiant la présence d’au moins 3 agents dans celui-ci. Cette procédure ne s’applique qu’à la suite d’un cas d’intrusion. Les agents doivent maintenir simultanément enfoncés quelques secondes les boutons lumineux afin que le module puisse détecter leur présence. L’interface Homme/Machine sort alors le module de son état d’alerte et les agents peuvent démarrer les systèmes du camion depuis le boitier métallique électrique."
+            app:layout_constraintStart_toStartOf="@+id/agent_arc"
+            app:layout_constraintTop_toBottomOf="@+id/agent_arc" />
+
+        <TextView
+            android:id="@+id/cube_arc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="2. Accès au cube d’archivage de l’ARC"
+            android:textColor="@color/pink_text"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/agent_arc"
+            app:layout_constraintTop_toBottomOf="@+id/description_light_button" />
+
+        <TextView
+            android:id="@+id/description_cube"
+            android:layout_width="390dp"
+            android:justificationMode="inter_word"
+            android:layout_height="wrap_content"
+            android:text="La première fonctionnalité des signaux lumineux est d’autoriser l’accès aux systèmes du Module de Surveillance en signifiant la présence d’au moins 3 agents dans celui-ci. Cette procédure ne s’applique qu’à la suite d’un cas d’intrusion. Les agents doivent maintenir simultanément enfoncés quelques secondes les boutons lumineux afin que le module puisse détecter leur présence. L’interface Homme/Machine sort alors le module de son état d’alerte et les agents peuvent démarrer les systèmes du camion depuis le boitier métallique électrique."
+
+            app:layout_constraintStart_toStartOf="@+id/cube_arc"
+            app:layout_constraintTop_toBottomOf="@+id/cube_arc" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline_icon_bas_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_video"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_video"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

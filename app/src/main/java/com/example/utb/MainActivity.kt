@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mainScene: Scene
     private lateinit var mainSceneVideo: Scene
     private lateinit var sceneMission: Scene
+    private lateinit var sceneNotice: Scene
     private lateinit var transitionSet: TransitionSet
     private lateinit var sceneRootFrameLayout: FrameLayout
 
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         mainScene = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.main_scene, this)
         mainSceneVideo = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_video, this)
         sceneMission = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_mission, this)
+        sceneNotice = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_notice, this)
 
         initAnimation()
 
@@ -208,6 +210,10 @@ class MainActivity : AppCompatActivity() {
             bottomVideoWidget.visibility = View.VISIBLE
 
         }, 1500)
+    }
+
+    fun openNotice(view: View) {
+        TransitionManager.go(sceneNotice, transitionSet)
     }
 
     fun loadMission(view: View) {
