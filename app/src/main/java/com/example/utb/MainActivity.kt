@@ -127,7 +127,41 @@ class MainActivity : AppCompatActivity() {
 
     fun launchVideo(view: View) {
         TransitionManager.go(mainSceneVideo, transitionSet)
-        getVideoView("android.resource://" + packageName + "/" + R.raw.intro).start()
+
+        val backgroundContainer: View =
+            mainSceneVideo.sceneRoot.findViewById(R.id.background_container)
+
+        val mireG: ImageView =
+            mainSceneVideo.sceneRoot.findViewById(R.id.mire_g)
+
+        val mireD: ImageView = mainSceneVideo.sceneRoot.findViewById(R.id.mire_d)
+
+        val bottomVideo: ImageView = mainSceneVideo.sceneRoot.findViewById(R.id.bottom_video)
+
+        val close: ImageView = mainSceneVideo.sceneRoot.findViewById(R.id.close)
+
+        val videoBackground: View = mainSceneVideo.sceneRoot.findViewById(R.id.video_background)
+
+        val videoPlayer: VideoView = mainSceneVideo.sceneRoot.findViewById(R.id.video_player)
+
+        val topVideo: ImageView = mainSceneVideo.sceneRoot.findViewById(R.id.top_video)
+
+        val bottomVideoWidget: ImageView =
+            mainSceneVideo.sceneRoot.findViewById(R.id.bottom_video_widget)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            backgroundContainer.visibility = View.VISIBLE
+            mireG.visibility = View.VISIBLE
+            mireD.visibility = View.VISIBLE
+            bottomVideo.visibility = View.VISIBLE
+            close.visibility = View.VISIBLE
+            videoBackground.visibility = View.VISIBLE
+            videoPlayer.visibility = View.VISIBLE
+            topVideo.visibility = View.VISIBLE
+            bottomVideoWidget.visibility = View.VISIBLE
+            getVideoView("android.resource://" + packageName + "/" + R.raw.intro).start()
+
+        }, 1500)
     }
 
     fun closeVideo(view: View) {
