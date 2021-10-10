@@ -214,6 +214,44 @@ class MainActivity : AppCompatActivity() {
 
     fun openNotice(view: View) {
         TransitionManager.go(sceneNotice, transitionSet)
+
+        val constraintLayout: ConstraintLayout =
+            sceneNotice.sceneRoot.findViewById(R.id.content_notice)
+
+        val backgroundContainer: View =
+            sceneNotice.sceneRoot.findViewById(R.id.background_container)
+
+        val mireG: ImageView =
+            sceneNotice.sceneRoot.findViewById(R.id.mire_g)
+
+        val mireD: ImageView = sceneNotice.sceneRoot.findViewById(R.id.mire_d)
+
+        val bottomVideo: ImageView = sceneNotice.sceneRoot.findViewById(R.id.bottom_video)
+
+        val close: ImageView = sceneNotice.sceneRoot.findViewById(R.id.close)
+
+        val videoBackground: View = sceneNotice.sceneRoot.findViewById(R.id.video_background)
+
+        val videoPlayer: VideoView = sceneNotice.sceneRoot.findViewById(R.id.video_player)
+
+        val topVideo: ImageView = sceneNotice.sceneRoot.findViewById(R.id.top_video)
+
+        val bottomVideoWidget: ImageView =
+            sceneNotice.sceneRoot.findViewById(R.id.bottom_video_widget)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            constraintLayout.visibility = View.VISIBLE
+            backgroundContainer.visibility = View.VISIBLE
+            mireG.visibility = View.VISIBLE
+            mireD.visibility = View.VISIBLE
+            bottomVideo.visibility = View.VISIBLE
+            close.visibility = View.VISIBLE
+            videoBackground.visibility = View.VISIBLE
+            videoPlayer.visibility = View.VISIBLE
+            topVideo.visibility = View.VISIBLE
+            bottomVideoWidget.visibility = View.VISIBLE
+
+        }, 1500)
     }
 
     fun loadMission(view: View) {
