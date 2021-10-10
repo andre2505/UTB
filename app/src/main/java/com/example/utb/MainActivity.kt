@@ -1,10 +1,8 @@
 package com.example.utb
 
-import android.R.attr.bitmap
-import android.R.attr.visible
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.media.Image
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,16 +15,13 @@ import android.view.animation.LinearInterpolator
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.squareup.picasso.Picasso
-import id.zelory.compressor.Compressor
-import id.zelory.compressor.constraint.format
-import id.zelory.compressor.constraint.quality
-import id.zelory.compressor.constraint.resolution
-import java.io.File
+import kotlinx.android.synthetic.main.main_scene.*
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mainScene: Scene
     private lateinit var mainSceneVideo: Scene
@@ -34,6 +29,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sceneNotice: Scene
     private lateinit var transitionSet: TransitionSet
     private lateinit var sceneRootFrameLayout: FrameLayout
+    private lateinit var noticeImage: ImageView
+    private lateinit var folderImage: ImageView
+    private lateinit var mapImage: ImageView
+    private lateinit var graphOne: ImageView
+    private lateinit var graphTwo: ImageView
+
+    private var isStarted: Boolean = false
+    private var timeStart: Date? = null
+    private var timeEnd: Date? = null
+    private var countVideo: Int = 1
+    private var countEnding: Int = 1
+    private var video: Int = R.raw.intro
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +56,19 @@ class MainActivity : AppCompatActivity() {
         initAnimation()
 
         mainScene.enter()
+
+        noticeImage = mainScene.sceneRoot.findViewById(R.id.notice)
+        folderImage = mainScene.sceneRoot.findViewById(R.id.folders)
+        mapImage = mainScene.sceneRoot.findViewById(R.id.worldmap)
+        graphOne = mainScene.sceneRoot.findViewById(R.id.graph)
+        graphTwo = mainScene.sceneRoot.findViewById(R.id.graph_2)
+
+        mapImage.setOnClickListener(this)
+        graphOne.setOnClickListener(this)
+        graphTwo.setOnClickListener(this)
+
+        noticeImage.visibility = View.INVISIBLE
+        folderImage.visibility = View.INVISIBLE
 
         getRandomBinary()
 
@@ -68,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     private fun initAnimation() {
 
         val cbTransition = ChangeBounds()
-        cbTransition.duration = 1000
+        cbTransition.duration = 500
         cbTransition.interpolator = LinearInterpolator()
         cbTransition.addTarget(R.id.mire_d_no_gray)
         cbTransition.addTarget(R.id.mire_g_no_gray)
@@ -128,6 +148,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun launchVideo(view: View) {
+
+        if (isStarted == false) {
+            timeStart = Calendar.getInstance().time
+            Log.e("TIME", timeStart.toString())
+        }
+
         TransitionManager.go(mainSceneVideo, transitionSet)
 
         val backgroundContainer: View =
@@ -161,13 +187,27 @@ class MainActivity : AppCompatActivity() {
             videoPlayer.visibility = View.VISIBLE
             topVideo.visibility = View.VISIBLE
             bottomVideoWidget.visibility = View.VISIBLE
-            getVideoView("android.resource://" + packageName + "/" + R.raw.intro).start()
+            getVideoView("android.resource://$packageName/$video").start()
 
-        }, 1500)
+        }, 800)
+
+        if (!noticeImage.isVisible && !folderImage.isVisible) {
+            noticeImage.visibility = View.VISIBLE
+            folderImage.visibility = View.VISIBLE
+        }
+
     }
 
     fun closeVideo(view: View) {
         TransitionManager.go(mainScene, transitionSet)
+
+        mapImage = mainScene.sceneRoot.findViewById(R.id.worldmap)
+        graphOne = mainScene.sceneRoot.findViewById(R.id.graph)
+        graphTwo = mainScene.sceneRoot.findViewById(R.id.graph_2)
+
+        mapImage.setOnClickListener(this)
+        graphOne.setOnClickListener(this)
+        graphTwo.setOnClickListener(this)
     }
 
     fun openMissionsView(view: View) {
@@ -209,7 +249,7 @@ class MainActivity : AppCompatActivity() {
             topVideo.visibility = View.VISIBLE
             bottomVideoWidget.visibility = View.VISIBLE
 
-        }, 1500)
+        }, 800)
     }
 
     fun openNotice(view: View) {
@@ -251,7 +291,7 @@ class MainActivity : AppCompatActivity() {
             topVideo.visibility = View.VISIBLE
             bottomVideoWidget.visibility = View.VISIBLE
 
-        }, 1500)
+        }, 800)
     }
 
     fun loadMission(view: View) {
@@ -259,7 +299,7 @@ class MainActivity : AppCompatActivity() {
             sceneMission.sceneRoot.findViewById(R.id.map_mission_detail)
         val button = view as Button
         Picasso.get().load(
-            "android.resource://" + packageName + "/" + this.resources.getIdentifier(
+            "android.resource://$packageName/" + this.resources.getIdentifier(
                 view.text.toString(),
                 "drawable",
                 this.packageName
@@ -267,4 +307,65 @@ class MainActivity : AppCompatActivity() {
         )
             .resize(600, 800).into(missionDetailImage)
     }
+
+    override fun onClick(v: View?) {
+        if (mapImage.isPressed && graphOne.isPressed) {
+            if (countVideo == 3) {
+                videoAlert(v!!)
+                countVideo = 1
+            } else {
+                countVideo += 1
+            }
+        } else if (timeStart != null && mapImage.isPressed && graphTwo.isPressed) {
+            if (countEnding == 3) {
+
+                countEnding = 1
+
+                timeEnd = Calendar.getInstance().time
+                val time: Long? = timeEnd?.time?.minus(timeStart?.time!!)
+
+                val seconds = time?.div(1000)
+                val minutes = seconds?.div(60)
+                val hours = minutes?.div(60)
+
+                Log.e(
+                    "TIME",
+                    hours.toString() + ' ' + minutes.toString() + ' ' + seconds.toString()
+                )
+            } else {
+                countEnding += 1
+            }
+        }
+    }
+
+    fun videoAlert(view: View) {
+        val alertDialog: AlertDialog = AlertDialog.Builder(this)
+            .setTitle("Vidéos")
+            .setMessage("Choisissez votre vidéo")
+            .setPositiveButton(
+                "Gagnée"
+            ) { dialog, which ->
+                video = R.raw.victoire
+                launchVideo(view)
+            }
+            .setNegativeButton(
+                "Perdue"
+            ) { dialog, which ->
+                video = R.raw.defaite
+                launchVideo(view)
+            }
+            .setCancelable(false)
+            .create()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY)
+        } else {
+            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
+        }
+
+        alertDialog.show()
+    }
+
+
+
 }
