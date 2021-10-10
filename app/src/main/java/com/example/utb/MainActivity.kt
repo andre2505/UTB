@@ -1,9 +1,13 @@
 package com.example.utb
 
 import android.R.attr.bitmap
+import android.R.attr.visible
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.media.Image
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.transition.*
 import android.util.Log
 import android.view.View
@@ -12,6 +16,7 @@ import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.squareup.picasso.Picasso
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.format
@@ -59,11 +64,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAnimation() {
+
         val cbTransition = ChangeBounds()
         cbTransition.duration = 1000
         cbTransition.interpolator = LinearInterpolator()
-        cbTransition.addTarget(R.id.mire_d)
-        cbTransition.addTarget(R.id.mire_g)
+        cbTransition.addTarget(R.id.mire_d_no_gray)
+        cbTransition.addTarget(R.id.mire_g_no_gray)
 
         transitionSet = TransitionSet()
         transitionSet.ordering = TransitionSet.ORDERING_TOGETHER
@@ -130,14 +136,50 @@ class MainActivity : AppCompatActivity() {
 
     fun openMissionsView(view: View) {
         TransitionManager.go(sceneMission, transitionSet)
+
+        val constraintLayout: ConstraintLayout =
+            sceneMission.sceneRoot.findViewById(R.id.content_map)
+
+        val backgroundContainer: View =
+            sceneMission.sceneRoot.findViewById(R.id.background_container)
+
+        val mireG: ImageView =
+            sceneMission.sceneRoot.findViewById(R.id.mire_g)
+
+        val mireD: ImageView = sceneMission.sceneRoot.findViewById(R.id.mire_d)
+
+        val bottomVideo: ImageView = sceneMission.sceneRoot.findViewById(R.id.bottom_video)
+
+        val close: ImageView = sceneMission.sceneRoot.findViewById(R.id.close)
+
+        val videoBackground: View = sceneMission.sceneRoot.findViewById(R.id.video_background)
+
+        val videoPlayer: VideoView = sceneMission.sceneRoot.findViewById(R.id.video_player)
+
+        val topVideo: ImageView = sceneMission.sceneRoot.findViewById(R.id.top_video)
+
+        val bottomVideoWidget: ImageView =
+            sceneMission.sceneRoot.findViewById(R.id.bottom_video_widget)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            constraintLayout.visibility = View.VISIBLE
+            backgroundContainer.visibility = View.VISIBLE
+            mireG.visibility = View.VISIBLE
+            mireD.visibility = View.VISIBLE
+            bottomVideo.visibility = View.VISIBLE
+            close.visibility = View.VISIBLE
+            videoBackground.visibility = View.VISIBLE
+            videoPlayer.visibility = View.VISIBLE
+            topVideo.visibility = View.VISIBLE
+            bottomVideoWidget.visibility = View.VISIBLE
+
+        }, 1500)
     }
 
     fun loadMission(view: View) {
         val missionDetailImage: ImageView =
             sceneMission.sceneRoot.findViewById(R.id.map_mission_detail)
         val button = view as Button
-        Log.e("Name", button.text.toString())
-
         Picasso.get().load(
             "android.resource://" + packageName + "/" + this.resources.getIdentifier(
                 view.text.toString(),

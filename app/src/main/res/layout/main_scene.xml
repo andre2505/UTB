@@ -157,7 +157,7 @@
         app:layout_constraintWidth_percent=".06" />
 
     <ImageView
-        android:id="@+id/mire_g"
+        android:id="@+id/mire_g_no_gray"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/mire_g"
@@ -170,7 +170,7 @@
         app:layout_constraintWidth_percent=".08" />
 
     <ImageView
-        android:id="@+id/mire_d"
+        android:id="@+id/mire_d_no_gray"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="10dp"
