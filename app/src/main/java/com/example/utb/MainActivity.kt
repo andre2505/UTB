@@ -1,23 +1,23 @@
 package com.example.utb
 
+import android.R.attr.bitmap
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.transition.*
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.VideoView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Picasso.LoadedFrom
-import com.squareup.picasso.Target
+import id.zelory.compressor.Compressor
+import id.zelory.compressor.constraint.format
+import id.zelory.compressor.constraint.quality
+import id.zelory.compressor.constraint.resolution
 import java.io.File
-import java.io.FileOutputStream
 import java.util.*
 
 
@@ -130,11 +130,21 @@ class MainActivity : AppCompatActivity() {
 
     fun openMissionsView(view: View) {
         TransitionManager.go(sceneMission, transitionSet)
-        val missionDetailImage: ImageView =
-            sceneMission.sceneRoot.findViewById<ImageView>(R.id.map_mission_detail)
+    }
 
-        Picasso.get().load(R.drawable.mission_amsterdam )
-            .resize(missionDetailImage.measuredWidth / 4 , missionDetailImage.maxHeight / 4 )
-            .into(missionDetailImage)
+    fun loadMission(view: View) {
+        val missionDetailImage: ImageView =
+            sceneMission.sceneRoot.findViewById(R.id.map_mission_detail)
+        val button = view as Button
+        Log.e("Name", button.text.toString())
+
+        Picasso.get().load(
+            "android.resource://" + packageName + "/" + this.resources.getIdentifier(
+                view.text.toString(),
+                "drawable",
+                this.packageName
+            )
+        )
+            .resize(600, 800).into(missionDetailImage)
     }
 }
