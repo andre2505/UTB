@@ -156,7 +156,7 @@
         android:layout_height="0dp"
         android:background="@color/grey_video"
         android:orientation="horizontal"
-        android:padding="20dp"
+        android:padding="40dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/top_video"
         app:layout_constraintEnd_toEndOf="@+id/mire_d"
@@ -214,9 +214,10 @@
 
         <TextView
             android:id="@+id/description_arc"
-            android:layout_width="390dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:justificationMode="inter_word"
+            android:textSize="16sp"
             android:text="La première fonctionnalité des signaux lumineux est d’autoriser l’accès aux systèmes du Module de Surveillance en signifiant la présence d’au moins 3 agents dans celui-ci. Cette procédure ne s’applique qu’à la suite d’un cas d’intrusion. Les agents doivent maintenir simultanément enfoncés quelques secondes les boutons lumineux afin que le module puisse détecter leur présence. L’interface Homme/Machine sort alors le module de son état d’alerte et les agents peuvent démarrer les systèmes du camion depuis le boitier métallique électrique."
             app:layout_constraintStart_toStartOf="@+id/agent_arc"
             app:layout_constraintTop_toBottomOf="@+id/agent_arc" />
@@ -226,6 +227,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginStart="40dp"
             android:text="2. Accès au cube d’archivage de l’ARC"
             android:textColor="@color/pink_text"
             android:textSize="20dp"
@@ -235,11 +237,11 @@
 
         <TextView
             android:id="@+id/description_cube"
-            android:layout_width="390dp"
+            android:layout_width="370dp"
             android:justificationMode="inter_word"
             android:layout_height="wrap_content"
             android:text="La première fonctionnalité des signaux lumineux est d’autoriser l’accès aux systèmes du Module de Surveillance en signifiant la présence d’au moins 3 agents dans celui-ci. Cette procédure ne s’applique qu’à la suite d’un cas d’intrusion. Les agents doivent maintenir simultanément enfoncés quelques secondes les boutons lumineux afin que le module puisse détecter leur présence. L’interface Homme/Machine sort alors le module de son état d’alerte et les agents peuvent démarrer les systèmes du camion depuis le boitier métallique électrique."
-
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/cube_arc"
             app:layout_constraintTop_toBottomOf="@+id/cube_arc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
