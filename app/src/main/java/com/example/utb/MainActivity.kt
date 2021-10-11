@@ -1,13 +1,15 @@
 package com.example.utb
 
 import android.app.AlertDialog
-import android.content.DialogInterface
+import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.transition.*
-import android.util.Log
+import android.transition.ChangeBounds
+import android.transition.Scene
+import android.transition.TransitionManager
+import android.transition.TransitionSet
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -17,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.main_scene.*
 import java.util.*
 
 
@@ -77,12 +78,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initWindowView() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main)
-        supportActionBar?.hide()
 
+        supportActionBar?.hide()
+        val layout = window.attributes
+        layout.screenBrightness = 1f
+
+        window.attributes = layout
         this.window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
     }
 
     private fun initAnimation() {
@@ -151,7 +157,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (isStarted == false) {
             timeStart = Calendar.getInstance().time
-            Log.e("TIME", timeStart.toString())
         }
 
         TransitionManager.go(mainSceneVideo, transitionSet)
@@ -328,10 +333,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val minutes = seconds?.div(60)
                 val hours = minutes?.div(60)
 
-                Log.e(
-                    "TIME",
-                    hours.toString() + ' ' + minutes.toString() + ' ' + seconds.toString()
-                )
+                val timeDisplayed = hours.toString() + "H " + minutes.toString() + "MN"
+                this.timeAlert(timeDisplayed)
+
             } else {
                 countEnding += 1
             }
@@ -340,7 +344,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     fun videoAlert(view: View) {
         val alertDialog: AlertDialog = AlertDialog.Builder(this)
-            .setTitle("Vidéos")
+            .setTitle("Vidéo")
             .setMessage("Choisissez votre vidéo")
             .setPositiveButton(
                 "Gagnée"
@@ -366,6 +370,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         alertDialog.show()
     }
 
+    fun timeAlert(time: String) {
+        val alertDialog: AlertDialog = AlertDialog.Builder(this)
+            .setTitle("Temps")
+            .setMessage(time)
+            .setPositiveButton(
+                "Redémarrer partie"
+            ) { dialog, which ->
+                timeStart = null
+                noticeImage = mainScene.sceneRoot.findViewById(R.id.notice)
+                folderImage = mainScene.sceneRoot.findViewById(R.id.folders)
+                noticeImage.visibility = View.INVISIBLE
+                folderImage.visibility = View.INVISIBLE
+            }
+            .setNegativeButton(
+                "Ok"
+            ) { dialog, which ->
 
+            }
+            .setCancelable(false)
+            .create()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY)
+        } else {
+            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
+        }
+
+        alertDialog.show()
+    }
 
 }
