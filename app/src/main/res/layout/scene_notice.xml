@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View" />
+        <import type="com.example.utb.html_decoder.HtmlDecoder"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -198,6 +199,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:visibility="gone"
                 android:justificationMode="inter_word"
                 android:text="Les modules de surveillance de génération ALPHA intègrent un double système de protection permettant à la fois de sécuriser l’accès au module et de protéger l’envoi de données via le cube d’archivage. Ce système est composé de trois boutons qui s’illuminent selon les besoins, vous trouverez ci-dessus les deux phases d’utilisations du dispositif."
                 android:textAlignment="textStart"

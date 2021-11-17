@@ -5,10 +5,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Html
 import android.transition.ChangeBounds
 import android.transition.Scene
 import android.transition.TransitionManager
 import android.transition.TransitionSet
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -17,6 +19,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
+import com.example.utb.html_decoder.HtmlDecoder
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -286,6 +289,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val bottomVideoWidget: ImageView =
             sceneNotice.sceneRoot.findViewById(R.id.bottom_video_widget)
+
+        val textViewPartOne: TextView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
+
+        textViewPartOne.text = HtmlDecoder.encode(textViewPartOne.text.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
             constraintLayout.visibility = View.VISIBLE
