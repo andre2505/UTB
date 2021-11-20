@@ -7,16 +7,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Html
-import android.transition.ChangeBounds
-import android.transition.Scene
-import android.transition.TransitionManager
-import android.transition.TransitionSet
+import android.transition.*
 import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -301,13 +299,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val textOneNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
         val textTwoNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_cube)
 
-        textHeaderNotice.loadData(getString(R.string.text_header_notice),"text/html; charset=utf-8", "UTF-8" )
+        textHeaderNotice.loadDataWithBaseURL(null,getString(R.string.text_header_notice),"text/html", "UTF-8", null)
         textHeaderNotice.setBackgroundColor(Color.TRANSPARENT)
 
-        textOneNotice.loadData(getString(R.string.text_1_notice),"text/html; charset=utf-8", "UTF-8")
+        textOneNotice.loadDataWithBaseURL(null,getString(R.string.text_1_notice),"text/html", "UTF-8", null)
         textOneNotice.setBackgroundColor(Color.TRANSPARENT)
 
-        textTwoNotice.loadData(getString(R.string.text_2_notice),"text/html; charset=utf-8", "UTF-8")
+        textTwoNotice.loadDataWithBaseURL(null,getString(R.string.text_2_notice),"text/html", "UTF-8", null)
         textTwoNotice.setBackgroundColor(Color.TRANSPARENT)
 
         Handler(Looper.getMainLooper()).postDelayed({

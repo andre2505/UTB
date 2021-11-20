@@ -178,6 +178,7 @@
                 android:text="NOTICE DE FONCTIONNEMENT DES BOUTONS LUMINEUX"
                 android:textColor="@color/pink_text"
                 android:textSize="20sp"
+                android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -190,6 +191,7 @@
                 android:text="Note de communication 147 - 921"
                 android:textColor="@color/blue_text"
                 android:textSize="16sp"
+                android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_light_button" />
@@ -207,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:paddingStart="6dp"
                 android:text="1. Présence des agents de l’ARC"
                 android:textColor="@color/pink_text"
                 android:textSize="20dp"
@@ -234,6 +237,7 @@
                 android:text="2. Accès au cube d’archivage de l’ARC"
                 android:textColor="@color/pink_text"
                 android:textSize="20dp"
+                android:paddingStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/agent_arc"
                 app:layout_constraintTop_toBottomOf="@+id/description_light_button" />
