@@ -194,17 +194,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title_light_button" />
 
-            <TextView
+            <WebView
                 android:id="@+id/description_light_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:visibility="gone"
-                android:justificationMode="inter_word"
-                android:text="Les modules de surveillance de génération ALPHA intègrent un double système de protection permettant à la fois de sécuriser l’accès au module et de protéger l’envoi de données via le cube d’archivage. Ce système est composé de trois boutons qui s’illuminent selon les besoins, vous trouverez ci-dessus les deux phases d’utilisations du dispositif."
-                android:textAlignment="textStart"
-                android:textColor="@color/blue_text"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sub_title_light_button" />
 
@@ -219,16 +213,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/description_light_button" />
 
-            <TextView
+            <WebView
                 android:id="@+id/description_arc"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="30dp"
-                android:justificationMode="inter_word"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
                 android:textColor="@color/blue_text"
-                android:text="@string/text_1_notice"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/description_cube"
                 app:layout_constraintStart_toStartOf="@+id/agent_arc"
@@ -246,15 +238,10 @@
                 app:layout_constraintStart_toEndOf="@+id/agent_arc"
                 app:layout_constraintTop_toBottomOf="@+id/description_light_button" />
 
-            <TextView
+            <WebView
                 android:id="@+id/description_cube"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:justificationMode="inter_word"
-                android:textSize="16sp"
-                android:lineSpacingExtra="4dp"
-                android:text="@string/text_2_notice"
-                android:textColor="@color/blue_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/cube_arc"

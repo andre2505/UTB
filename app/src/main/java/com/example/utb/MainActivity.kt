@@ -1,6 +1,7 @@
 package com.example.utb
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +16,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.LinearInterpolator
+import android.webkit.WebView
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -290,9 +292,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val bottomVideoWidget: ImageView =
             sceneNotice.sceneRoot.findViewById(R.id.bottom_video_widget)
 
-        val textViewPartOne: TextView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
+        //encode text html and justify
+        val textHeaderNotice: WebView =  sceneNotice.sceneRoot.findViewById(R.id.description_light_button)
+        val textOneNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
+        val textTwoNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_cube)
 
-        textViewPartOne.text = HtmlDecoder.encode(textViewPartOne.text.toString())
+        textHeaderNotice.loadData(getString(R.string.text_header_notice),"text/html; charset=utf-8", "UTF-8" )
+        textHeaderNotice.setBackgroundColor(Color.TRANSPARENT)
+
+        textOneNotice.loadData(getString(R.string.text_1_notice),"text/html; charset=utf-8", "UTF-8")
+        textOneNotice.setBackgroundColor(Color.TRANSPARENT)
+
+        textTwoNotice.loadData(getString(R.string.text_2_notice),"text/html; charset=utf-8", "UTF-8")
+        textTwoNotice.setBackgroundColor(Color.TRANSPARENT)
 
         Handler(Looper.getMainLooper()).postDelayed({
             constraintLayout.visibility = View.VISIBLE
