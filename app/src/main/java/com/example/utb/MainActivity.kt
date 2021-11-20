@@ -212,6 +212,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     fun closeVideo(view: View) {
+
+        // Return Video Intro
+        video = R.raw.intro
+
         TransitionManager.go(mainScene, transitionSet)
 
         mapImage = mainScene.sceneRoot.findViewById(R.id.worldmap)
