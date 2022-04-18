@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <View
+        android:id="@+id/background_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_blue_top_and_bottom"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/background_map_bottom"
+        app:layout_constraintEnd_toEndOf="@+id/background_map_right"
+        app:layout_constraintStart_toStartOf="@+id/background_map_left"
+        app:layout_constraintTop_toTopOf="@+id/background_map_top" />
+
+    <ImageView
+        android:id="@+id/mire_g_no_gray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mire_g"
+        app:layout_constraintBottom_toBottomOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline3"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintTop_toTopOf="@id/horGuideline1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/mire_g"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/mire_g_op"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline3"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintTop_toTopOf="@id/horGuideline1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/mire_d_no_gray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/mire_d"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+
+    <ImageView
+        android:id="@+id/mire_d"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/mire_d_op"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent=".86"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent=".12" />
+
+    <ImageView
+        android:id="@+id/bottom_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        android:background="@drawable/border_top_blue_video"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline2"
+        app:layout_constraintHeight_percent=".05"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline3"
+        app:layout_constraintTop_toTopOf="@+id/horGuideline1" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerInside"
+        android:visibility="invisible"
+        android:src="@drawable/truc_haut_avec_croix"
+        android:onClick="closeVideo"
+        app:layout_constraintBottom_toBottomOf="@+id/bottom_video"
+        app:layout_constraintEnd_toEndOf="@+id/bottom_video"
+        app:layout_constraintStart_toStartOf="@+id/bottom_video"
+        app:layout_constraintTop_toTopOf="@+id/horGuideline_icon" />
+
+    <View
+        android:id="@+id/video_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/mire_d"
+        app:layout_constraintStart_toEndOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:keepScreenOn="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/horGuideline4"
+        app:layout_constraintEnd_toStartOf="@+id/mire_d"
+        app:layout_constraintStart_toEndOf="@+id/mire_g"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_video">
+
+        <TextView
+            android:id="@+id/time_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="90sp"
+            android:textColor="@color/blue_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/top_video"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/border_bottom_blue_video"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/video_background"
+        app:layout_constraintEnd_toStartOf="@+id/horGuideline2"
+        app:layout_constraintHeight_percent=".05"
+        app:layout_constraintStart_toEndOf="@+id/horGuideline3" />
+
+    <ImageView
+        android:id="@+id/bottom_video_widget"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/truc_bas_sans_croix"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/horGuideline_icon_bas_video"
+        app:layout_constraintEnd_toEndOf="@+id/top_video"
+        app:layout_constraintStart_toStartOf="@+id/top_video"
+        app:layout_constraintTop_toTopOf="@+id/top_video" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horGuideline_icon_bas_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.94" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/grey_video"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/grey_video"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/background_map_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

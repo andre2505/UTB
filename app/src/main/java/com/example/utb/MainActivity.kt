@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mainSceneVideo: Scene
     private lateinit var sceneMission: Scene
     private lateinit var sceneNotice: Scene
+    private lateinit var sceneTime: Scene
     private lateinit var transitionSet: TransitionSet
     private lateinit var sceneRootFrameLayout: FrameLayout
     private lateinit var noticeImage: ImageView
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var countEnding: Int = 1
     private var video: Int = R.raw.intro
     private var win: Boolean = false
+    private var timeDisplayed: String? = null
 
     private val UI_OPTIONS = (View.SYSTEM_UI_FLAG_LOW_PROFILE
             or View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -67,6 +69,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainSceneVideo = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_video, this)
         sceneMission = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_mission, this)
         sceneNotice = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_notice, this)
+        sceneTime = Scene.getSceneForLayout(sceneRootFrameLayout, R.layout.scene_time, this)
 
         initAnimation()
 
@@ -360,6 +363,47 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }, 800)
     }
 
+    private fun openTime(time: String) {
+        TransitionManager.go(sceneTime, transitionSet)
+
+        val backgroundContainer: View =
+            sceneTime.sceneRoot.findViewById(R.id.background_container)
+
+        val mireG: ImageView =
+            sceneTime.sceneRoot.findViewById(R.id.mire_g)
+
+        val mireD: ImageView = sceneTime.sceneRoot.findViewById(R.id.mire_d)
+
+        val bottomVideo: ImageView = sceneTime.sceneRoot.findViewById(R.id.bottom_video)
+
+        val close: ImageView = sceneTime.sceneRoot.findViewById(R.id.close)
+
+        val videoBackground: View = sceneTime.sceneRoot.findViewById(R.id.video_background)
+
+        val textTime: TextView = sceneTime.sceneRoot.findViewById(R.id.time_display)
+
+        val viewTime: ConstraintLayout = sceneTime.sceneRoot.findViewById(R.id.view_time)
+
+        val topVideo: ImageView = sceneTime.sceneRoot.findViewById(R.id.top_video)
+
+        val bottomVideoWidget: ImageView =
+            sceneTime.sceneRoot.findViewById(R.id.bottom_video_widget)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            backgroundContainer.visibility = View.VISIBLE
+            mireG.visibility = View.VISIBLE
+            mireD.visibility = View.VISIBLE
+            bottomVideo.visibility = View.VISIBLE
+            close.visibility = View.VISIBLE
+            videoBackground.visibility = View.VISIBLE
+            textTime.visibility = View.VISIBLE
+            topVideo.visibility = View.VISIBLE
+            viewTime.visibility =  View.VISIBLE
+            bottomVideoWidget.visibility = View.VISIBLE
+            textTime.text = time
+        }, 800)
+    }
+
     fun loadMission(view: View) {
         val missionDetailImage: ImageView =
             sceneMission.sceneRoot.findViewById(R.id.map_mission_detail)
@@ -386,6 +430,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     win = true
                     countVideoWin = 1
                     countCenterCircle = 1
+                    timeEndPart()
                     callEntranceAnimation()
                 } else {
                     countVideoWin++
@@ -396,6 +441,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     win = false
                     countVideoLoose = 1
                     countCenterCircle = 1
+                    timeEndPart()
                     callEntranceAnimation()
                 } else {
                     countVideoLoose++
@@ -405,16 +451,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 if (countEnding == 2 && countCenterCircle == 2) {
                     countEnding = 1
                     countCenterCircle = 1
-                    timeEnd = Calendar.getInstance().time
-                    val time: Long? = timeEnd?.time?.minus(timeStart?.time!!)
-
-                    val seconds = time?.div(1000)
-                    val minutes = seconds?.div(60)
-                    val hours = minutes?.div(60)
-
-                    val timeDisplayed = hours.toString() + "H " + minutes.toString() + "MN"
-                    this.timeAlert(timeDisplayed)
-
+                    if(timeDisplayed == null) {
+                        this.timeDisplayed = "La partie n'est pas finie. Pour finir veuillez lancer l'appel téléphonique"
+                    }
+                    this.timeAlert(timeDisplayed!!)
                 } else {
                     countEnding++
                 }
@@ -430,34 +470,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun videoAlert(view: View) {
-        val alertDialog: AlertDialog = AlertDialog.Builder(this)
-            .setTitle("Vidéo")
-            .setMessage("Choisissez votre vidéo")
-            .setPositiveButton(
-                "Gagnée"
-            ) { dialog, which ->
-                video = R.raw.victoire
-                launchVideo(view)
-            }
-            .setNegativeButton(
-                "Perdue"
-            ) { dialog, which ->
-                video = R.raw.defaite
-                launchVideo(view)
-            }
-            .setCancelable(false)
-            .create()
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY)
-        } else {
-            alertDialog.window!!.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT)
-        }
-
-        alertDialog.show()
-    }
-
     fun timeAlert(time: String) {
         val alertDialog: AlertDialog = AlertDialog.Builder(this)
             .setTitle("Temps")
@@ -466,6 +478,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 "Redémarrer partie"
             ) { dialog, which ->
                 timeStart = null
+                timeDisplayed = null
                 noticeImage = mainScene.sceneRoot.findViewById(R.id.notice)
                 folderImage = mainScene.sceneRoot.findViewById(R.id.folders)
                 noticeImage.visibility = View.INVISIBLE
@@ -474,9 +487,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .setPositiveButton(
                 "Afficher le temps"
             ) { dialog, which ->
-
+                openTime(time)
             }
-            .setNeutralButton("Fermer") {
+            .setNeutralButton("Retour") {
                 dialog, which ->
             }
             .setCancelable(false)
@@ -509,4 +522,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         entranceCall.startAnimation(anim)
     }
 
+    private fun timeEndPart() {
+        timeEnd = Calendar.getInstance().time
+        val time: Long? = timeEnd?.time?.minus(timeStart?.time!!)
+
+        val seconds = time?.div(1000)
+        val minutes = seconds?.div(60)
+        val hours = minutes?.div(60)
+
+        timeDisplayed = hours.toString() + "h " + minutes.toString() + "mn"
+    }
 }
