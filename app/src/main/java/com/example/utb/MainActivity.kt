@@ -6,20 +6,19 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
 import android.transition.*
-import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import com.example.utb.html_decoder.HtmlDecoder
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -37,13 +36,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mapImage: ImageView
     private lateinit var graphOne: ImageView
     private lateinit var graphTwo: ImageView
+    private lateinit var graphThree: ImageView
+    private lateinit var centerCircle: ImageView
+    private lateinit var entranceCall: ImageView
 
     private var isStarted: Boolean = false
     private var timeStart: Date? = null
     private var timeEnd: Date? = null
-    private var countVideo: Int = 1
+    private var countCenterCircle = 1
+    private var countVideoWin: Int = 1
+    private var countVideoLoose: Int = 1
     private var countEnding: Int = 1
     private var video: Int = R.raw.intro
+    private var win: Boolean = false
 
     private val UI_OPTIONS = (View.SYSTEM_UI_FLAG_LOW_PROFILE
             or View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -70,12 +75,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         noticeImage = mainScene.sceneRoot.findViewById(R.id.notice)
         folderImage = mainScene.sceneRoot.findViewById(R.id.folders)
         mapImage = mainScene.sceneRoot.findViewById(R.id.worldmap)
+        entranceCall = mainScene.sceneRoot.findViewById(R.id.entrance_call_img)
+
+        centerCircle = mainScene.sceneRoot.findViewById(R.id.cercle_3)
         graphOne = mainScene.sceneRoot.findViewById(R.id.graph)
         graphTwo = mainScene.sceneRoot.findViewById(R.id.graph_2)
+        graphThree = mainScene.sceneRoot.findViewById(R.id.graph_3)
 
         mapImage.setOnClickListener(this)
+        centerCircle.setOnClickListener(this)
         graphOne.setOnClickListener(this)
         graphTwo.setOnClickListener(this)
+        graphThree.setOnClickListener(this)
+        entranceCall.setOnClickListener(this)
 
         noticeImage.visibility = View.INVISIBLE
         folderImage.visibility = View.INVISIBLE
@@ -217,12 +229,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         TransitionManager.go(mainScene, transitionSet)
 
         mapImage = mainScene.sceneRoot.findViewById(R.id.worldmap)
+        centerCircle = mainScene.sceneRoot.findViewById(R.id.cercle_3)
         graphOne = mainScene.sceneRoot.findViewById(R.id.graph)
         graphTwo = mainScene.sceneRoot.findViewById(R.id.graph_2)
+        graphThree = mainScene.sceneRoot.findViewById(R.id.graph_3)
+        entranceCall = mainScene.sceneRoot.findViewById(R.id.entrance_call_img)
 
         mapImage.setOnClickListener(this)
+        centerCircle.setOnClickListener(this)
+        entranceCall.setOnClickListener(this)
         graphOne.setOnClickListener(this)
         graphTwo.setOnClickListener(this)
+        graphThree.setOnClickListener(this)
     }
 
     fun openMissionsView(view: View) {
@@ -295,17 +313,36 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             sceneNotice.sceneRoot.findViewById(R.id.bottom_video_widget)
 
         //encode text html and justify
-        val textHeaderNotice: WebView =  sceneNotice.sceneRoot.findViewById(R.id.description_light_button)
+        val textHeaderNotice: WebView =
+            sceneNotice.sceneRoot.findViewById(R.id.description_light_button)
         val textOneNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
         val textTwoNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_cube)
 
-        textHeaderNotice.loadDataWithBaseURL(null,getString(R.string.text_header_notice),"text/html", "UTF-8", null)
+        textHeaderNotice.loadDataWithBaseURL(
+            null,
+            getString(R.string.text_header_notice),
+            "text/html",
+            "UTF-8",
+            null
+        )
         textHeaderNotice.setBackgroundColor(Color.TRANSPARENT)
 
-        textOneNotice.loadDataWithBaseURL(null,getString(R.string.text_1_notice),"text/html", "UTF-8", null)
+        textOneNotice.loadDataWithBaseURL(
+            null,
+            getString(R.string.text_1_notice),
+            "text/html",
+            "UTF-8",
+            null
+        )
         textOneNotice.setBackgroundColor(Color.TRANSPARENT)
 
-        textTwoNotice.loadDataWithBaseURL(null,getString(R.string.text_2_notice),"text/html", "UTF-8", null)
+        textTwoNotice.loadDataWithBaseURL(
+            null,
+            getString(R.string.text_2_notice),
+            "text/html",
+            "UTF-8",
+            null
+        )
         textTwoNotice.setBackgroundColor(Color.TRANSPARENT)
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -338,30 +375,57 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (mapImage.isPressed && graphOne.isPressed) {
-            if (countVideo == 3) {
-                videoAlert(v!!)
-                countVideo = 1
-            } else {
-                countVideo += 1
+        when (v?.id) {
+            centerCircle.id -> {
+                if (countCenterCircle < 2) {
+                    countCenterCircle++
+                }
             }
-        } else if (timeStart != null && mapImage.isPressed && graphTwo.isPressed) {
-            if (countEnding == 3) {
+            graphOne.id -> {
+                if (countVideoWin == 2 && countCenterCircle == 2) {
+                    win = true
+                    countVideoWin = 1
+                    countCenterCircle = 1
+                    callEntranceAnimation()
+                } else {
+                    countVideoWin++
+                }
+            }
+            graphTwo.id -> {
+                if (countVideoLoose == 2 && countCenterCircle == 2) {
+                    win = false
+                    countVideoLoose = 1
+                    countCenterCircle = 1
+                    callEntranceAnimation()
+                } else {
+                    countVideoLoose++
+                }
+            }
+            graphThree.id -> {
+                if (countEnding == 2 && countCenterCircle == 2) {
+                    countEnding = 1
+                    countCenterCircle = 1
+                    timeEnd = Calendar.getInstance().time
+                    val time: Long? = timeEnd?.time?.minus(timeStart?.time!!)
 
-                countEnding = 1
+                    val seconds = time?.div(1000)
+                    val minutes = seconds?.div(60)
+                    val hours = minutes?.div(60)
 
-                timeEnd = Calendar.getInstance().time
-                val time: Long? = timeEnd?.time?.minus(timeStart?.time!!)
+                    val timeDisplayed = hours.toString() + "H " + minutes.toString() + "MN"
+                    this.timeAlert(timeDisplayed)
 
-                val seconds = time?.div(1000)
-                val minutes = seconds?.div(60)
-                val hours = minutes?.div(60)
-
-                val timeDisplayed = hours.toString() + "H " + minutes.toString() + "MN"
-                this.timeAlert(timeDisplayed)
-
-            } else {
-                countEnding += 1
+                } else {
+                    countEnding++
+                }
+            }
+            entranceCall.id -> {
+                if (win == true) {
+                    video = R.raw.victoire
+                } else {
+                    video = R.raw.defaite
+                }
+                launchVideo(entranceCall)
             }
         }
     }
@@ -398,7 +462,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val alertDialog: AlertDialog = AlertDialog.Builder(this)
             .setTitle("Temps")
             .setMessage(time)
-            .setPositiveButton(
+            .setNegativeButton(
                 "Redémarrer partie"
             ) { dialog, which ->
                 timeStart = null
@@ -407,10 +471,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 noticeImage.visibility = View.INVISIBLE
                 folderImage.visibility = View.INVISIBLE
             }
-            .setNegativeButton(
-                "Ok"
+            .setPositiveButton(
+                "Afficher le temps"
             ) { dialog, which ->
 
+            }
+            .setNeutralButton("Fermer") {
+                dialog, which ->
             }
             .setCancelable(false)
             .create()
@@ -422,6 +489,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         alertDialog.show()
+    }
+
+    private fun callEntranceAnimation() {
+        val transition = Slide(Gravity.TOP)
+        transition.duration = 1000
+        transition.addTarget(R.id.entrance_call_img)
+        TransitionManager.beginDelayedTransition(mainScene.sceneRoot, transition)
+        entranceCall.visibility = (View.VISIBLE)
+        blinkAnimation()
+    }
+
+    private fun blinkAnimation() {
+        val anim: Animation = AlphaAnimation(0.3f, 1.0f)
+        anim.duration = 500
+        anim.startOffset = 20
+        anim.repeatMode = Animation.REVERSE
+        anim.repeatCount = Animation.INFINITE
+        entranceCall.startAnimation(anim)
     }
 
 }

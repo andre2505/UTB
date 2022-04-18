@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,13 +8,24 @@
     android:background="@android:color/transparent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/entrance_call_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/bouton_appel"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/cercle_4"
+        app:layout_constraintEnd_toStartOf="@+id/folders"
+        app:layout_constraintStart_toEndOf="@+id/video"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/folders"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/folders"
         android:onClick="openMissionsView"
+        android:src="@drawable/folders"
         app:layout_constraintEnd_toStartOf="@+id/guideline_logo_r"
         app:layout_constraintHeight_default="percent"
         app:layout_constraintHeight_percent=".24"
@@ -93,10 +105,10 @@
         android:id="@+id/notice"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/notice"
-        android:visibility="visible"
         android:layout_marginTop="50dp"
         android:onClick="openNotice"
+        android:src="@drawable/notice"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/horGuideline4"
         app:layout_constraintEnd_toStartOf="@+id/mire_g_no_gray"
         app:layout_constraintHeight_percent=".24"
@@ -190,7 +202,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
 
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_end="378dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline2"
