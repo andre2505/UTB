@@ -180,6 +180,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             timeStart = Calendar.getInstance().time
         }
 
+        isStarted = true
+
         TransitionManager.go(mainSceneVideo, transitionSet)
 
         val backgroundContainer: View =
@@ -315,38 +317,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val bottomVideoWidget: ImageView =
             sceneNotice.sceneRoot.findViewById(R.id.bottom_video_widget)
 
-        //encode text html and justify
-        val textHeaderNotice: WebView =
-            sceneNotice.sceneRoot.findViewById(R.id.description_light_button)
-        val textOneNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
-        val textTwoNotice: WebView = sceneNotice.sceneRoot.findViewById(R.id.description_cube)
-
-        textHeaderNotice.loadDataWithBaseURL(
-            null,
-            getString(R.string.text_header_notice),
-            "text/html",
-            "UTF-8",
-            null
-        )
-        textHeaderNotice.setBackgroundColor(Color.TRANSPARENT)
-
-        textOneNotice.loadDataWithBaseURL(
-            null,
-            getString(R.string.text_1_notice),
-            "text/html",
-            "UTF-8",
-            null
-        )
-        textOneNotice.setBackgroundColor(Color.TRANSPARENT)
-
-        textTwoNotice.loadDataWithBaseURL(
-            null,
-            getString(R.string.text_2_notice),
-            "text/html",
-            "UTF-8",
-            null
-        )
-        textTwoNotice.setBackgroundColor(Color.TRANSPARENT)
+        val textOneNotice: ImageView = sceneNotice.sceneRoot.findViewById(R.id.description_arc)
 
         Handler(Looper.getMainLooper()).postDelayed({
             constraintLayout.visibility = View.VISIBLE
@@ -359,7 +330,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             videoPlayer.visibility = View.VISIBLE
             topVideo.visibility = View.VISIBLE
             bottomVideoWidget.visibility = View.VISIBLE
-
+            textOneNotice.visibility = View.VISIBLE
         }, 800)
     }
 
@@ -426,6 +397,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             graphOne.id -> {
+
+                if(isStarted == false) {
+                    return;
+                }
+
                 if (countVideoWin == 2 && countCenterCircle == 2) {
                     win = true
                     countVideoWin = 1
@@ -437,6 +413,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             graphTwo.id -> {
+
+                if(isStarted == false) {
+                    return;
+                }
+
                 if (countVideoLoose == 2 && countCenterCircle == 2) {
                     win = false
                     countVideoLoose = 1
@@ -448,6 +429,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             graphThree.id -> {
+
+                if(isStarted == false) {
+                    return;
+                }
+
                 if (countEnding == 2 && countCenterCircle == 2) {
                     countEnding = 1
                     countCenterCircle = 1
@@ -477,6 +463,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .setNegativeButton(
                 "Redémarrer partie"
             ) { dialog, which ->
+                isStarted = false
                 timeStart = null
                 timeDisplayed = null
                 noticeImage = mainScene.sceneRoot.findViewById(R.id.notice)

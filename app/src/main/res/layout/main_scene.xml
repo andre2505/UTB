@@ -11,14 +11,16 @@
     <ImageView
         android:id="@+id/entrance_call_img"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/bouton_appel"
         android:visibility="gone"
+        android:src="@drawable/bouton_appel"
         app:layout_constraintBottom_toTopOf="@+id/cercle_4"
         app:layout_constraintEnd_toStartOf="@+id/folders"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/video"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/folders"
@@ -201,8 +203,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
-        app:layout_constraintGuide_end="378dp" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horGuideline2"
